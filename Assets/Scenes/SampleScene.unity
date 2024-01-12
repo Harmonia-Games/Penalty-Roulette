@@ -283,7 +283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &370002644
 Animator:
   serializedVersion: 5
@@ -776,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8991663
+      value: -0.8991663
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalScale.z
@@ -2490,11 +2490,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8991663
+      value: -0.8991663
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8991664
+      value: 0.8991663
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2535,6 +2535,10 @@ PrefabInstance:
     - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108701174595238965, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4108701174595238966, guid: ab926d46591ec482ea6ea4e82560f539, type: 3}
       propertyPath: m_Name
