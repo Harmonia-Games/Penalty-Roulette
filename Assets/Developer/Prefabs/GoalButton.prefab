@@ -334,9 +334,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9277e634e7344408d884d229ef8d3820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DemAnimator: {fileID: 6235515973942174405}
-  Betanimator: {fileID: 7362860583222128081}
-  DemText: {fileID: 3576455173934406949}
+  classicButtonAnimator: {fileID: 6235515973942174405}
+  betButtonAnimator: {fileID: 7362860583222128081}
+  MoneyText: {fileID: 3576455173934406949}
+  multiply: 48
+  selectClassic: 0
+  selectFirstEight: 0
+  selectSecondEight: 0
+  selectThirdEight: 0
+  selectOneToTwelve: 0
+  selectTwelveToTwentyFour: 0
+  selectBlue: 0
+  selectYellow: 0
+  selectEven: 0
+  selectOdd: 0
 --- !u!1 &5166817925110800297
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +361,7 @@ GameObject:
   - component: {fileID: 3698192823521273615}
   - component: {fileID: 6235515973942174405}
   m_Layer: 0
-  m_Name: DEM Area
+  m_Name: ButtonArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

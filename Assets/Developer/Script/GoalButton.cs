@@ -5,19 +5,19 @@ using TMPro;
 
 public class GoalButton : MonoBehaviour
 {
-    [SerializeField] Animator DemAnimator;
-    [SerializeField] Animator Betanimator;
-    [SerializeField] TMP_Text DemText;
+    [SerializeField] Animator classicButtonAnimator;
+    [SerializeField] Animator betButtonAnimator;
+    [SerializeField] TMP_Text MoneyText;
 
     public float multiply;
     float currentBet;
 
-    private bool selectClassic, selectFirstEight, selectSecondEight, selectThirdEight,
+    public bool selectClassic, selectFirstEight, selectSecondEight, selectThirdEight,
                  selectOneToTwelve, selectTwelveToTwentyFour, selectBlue, selectYellow, selectEven, selectOdd;
 
-    private void UpdateDemText()
+    private void UpdateMoneyText()
     {
-        DemText.text = "DEM " +BetManager.instance.GetCurrentDemValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+        MoneyText.text = "USD " +BetManager.instance.GetBetMoneyValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
     }
 
     private void ToggleSelection(ref bool selection, Animator animator)
@@ -26,40 +26,45 @@ public class GoalButton : MonoBehaviour
 
         if (!AnySelectionTrue())
         {
-            animator.SetTrigger("Deselect");
+            animator.SetBool("Deselect",true);
+            animator.SetBool("Select", false);
         }
-        else if (selection)
+        else if (AnySelectionTrue())
         {
-            animator.SetTrigger("Select");
+            animator.SetBool("Deselect", false);
+            animator.SetBool("Select", true);
+            BetManager.instance.UpdateCurrentBet(currentBet);
         }
     }
 
     private bool AnySelectionTrue() =>
-        selectClassic || selectFirstEight || selectSecondEight || selectThirdEight ||
+         selectFirstEight || selectSecondEight || selectThirdEight ||
         selectOneToTwelve || selectTwelveToTwentyFour || selectBlue || selectYellow || selectEven || selectOdd;
 
     public void SelectClassic()
     {
         if (!selectClassic)
         {
-            DemAnimator.SetTrigger("Select");
-            currentBet = BetManager.instance.GetCurrentDemValue();
-            UpdateDemText();
+            classicButtonAnimator.SetTrigger("Select");
+            currentBet = BetManager.instance.GetBetMoneyValue();
+            BetManager.instance.UpdateCurrentBet(currentBet);
+            UpdateMoneyText();
         }
         else
         {
-            DemAnimator.SetTrigger("Deselect");
+            classicButtonAnimator.SetTrigger("Deselect");
+            BetManager.instance.UpdateCurrentBet(-currentBet);
         }
 
         selectClassic = !selectClassic;
     }
-    public void SelectBetFirstEight() { ToggleSelection(ref selectFirstEight, Betanimator);  } 
-    public void SelectBetSecondEight() => ToggleSelection(ref selectSecondEight, Betanimator);
-    public void SelectBetThirdEight() => ToggleSelection(ref selectThirdEight, Betanimator);
-    public void SelectBetOneToTwelve() => ToggleSelection(ref selectOneToTwelve, Betanimator);
-    public void SelectBetTwelveToTwentyFour() => ToggleSelection(ref selectTwelveToTwentyFour, Betanimator);
-    public void SelectBetBlue() => ToggleSelection(ref selectBlue, Betanimator);
-    public void SelectBetYellow() => ToggleSelection(ref selectYellow, Betanimator);
-    public void SelectBetEven() => ToggleSelection(ref selectEven, Betanimator);
-    public void SelectBetOdd() => ToggleSelection(ref selectOdd, Betanimator);
+    public void SelectBetFirstEight() { ToggleSelection(ref selectFirstEight, betButtonAnimator);  } 
+    public void SelectBetSecondEight() => ToggleSelection(ref selectSecondEight, betButtonAnimator);
+    public void SelectBetThirdEight() => ToggleSelection(ref selectThirdEight, betButtonAnimator);
+    public void SelectBetOneToTwelve() => ToggleSelection(ref selectOneToTwelve, betButtonAnimator);
+    public void SelectBetTwelveToTwentyFour() => ToggleSelection(ref selectTwelveToTwentyFour, betButtonAnimator);
+    public void SelectBetBlue() => ToggleSelection(ref selectBlue, betButtonAnimator);
+    public void SelectBetYellow() => ToggleSelection(ref selectYellow, betButtonAnimator);
+    public void SelectBetEven() => ToggleSelection(ref selectEven, betButtonAnimator);
+    public void SelectBetOdd() => ToggleSelection(ref selectOdd, betButtonAnimator);
 }

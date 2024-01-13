@@ -8,23 +8,44 @@ public class BetManager : MonoBehaviour
 {
     public static BetManager instance;
 
-    [SerializeField] float dem;
-    [SerializeField] TMP_Text demText;
+    [Header("Bet Money")]
+    [SerializeField] float currentBet;
+    [SerializeField] float betMoneyValue;
+    [SerializeField] TMP_Text betMoneyValueText;
+
+    [Header("Case Balance")]
+    [SerializeField] float caseMoneyValue;
+    [SerializeField] TMP_Text caseMoneyValueText;
+
+
 
     private void Awake()
     {
         instance = this;
+        caseMoneyValue = 5000;
     }
 
     private void Start()
     {
         IncreaseBetValue();
-        UpdateDemText();
+        UpdateMoneyTexts();
+    }
+    public float UpdateCurrentBet(float bet)
+    {
+        return currentBet+=bet;
+    }
+    public float CurrentBet()
+    {
+        return currentBet;
+    }
+    public float GetBetMoneyValue()
+    {
+        return betMoneyValue;
     }
 
-    public float GetCurrentDemValue()
+    public float GetCurrentCaseValue()
     {
-        return dem;
+        return caseMoneyValue;
     }
 
     public void IncreaseBetValue()
@@ -33,14 +54,14 @@ public class BetManager : MonoBehaviour
 
         for (int i = 0; i < increments.Length; i++)
         {
-            if (dem < increments[i])
+            if (betMoneyValue < increments[i])
             {
-                dem = increments[i];
+                betMoneyValue = increments[i];
                 break;
             }
         }
 
-        UpdateDemText();
+        UpdateMoneyTexts();
     }
 
     public void DecreaseBetValue()
@@ -49,19 +70,20 @@ public class BetManager : MonoBehaviour
 
         for (int i = 0; i < decrements.Length; i++)
         {
-            if (dem > decrements[i])
+            if (betMoneyValue > decrements[i])
             {
-                dem = decrements[i];
+                betMoneyValue = decrements[i];
                 break;
             }
         }
 
-        UpdateDemText();
+        UpdateMoneyTexts();
     }
 
-    private void UpdateDemText()
+    private void UpdateMoneyTexts()
     {
-        demText.text = "DEM " + GetCurrentDemValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+        betMoneyValueText.text = "USD " + GetBetMoneyValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+        caseMoneyValueText.text = "USD " + GetCurrentCaseValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
     }
 
 }
