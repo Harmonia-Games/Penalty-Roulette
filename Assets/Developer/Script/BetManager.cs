@@ -1,97 +1,67 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using TMPro;
 
 public class BetManager : MonoBehaviour
 {
-    [SerializeField] GameObject[] FirstEight, SecondEight, ThirthEight, oneToTwelve, TwelveToTwentyFour, Blue, Yellow, Even, Odd;
+    public static BetManager instance;
 
-    private const string FirstEightString = "FirstEight", SecondEightString = "SecondEight", ThirthEightString = "ThirthEight",
-                         OneToTwelveString = "OneToTwelve", TwelveToTwentyFourString = "TwelveToTwentyFour", BlueString = "Blue",
-                         YellowString = "Yellow", EvenString = "Even", OddString = "Odd";
+    [SerializeField] float dem;
+    [SerializeField] TMP_Text demText;
 
-    private void TriggerEnterAction(GameObject[] objectsToTrigger, ExecuteEvents.EventFunction<IPointerEnterHandler> action)
+    private void Awake()
     {
-        foreach (var item in objectsToTrigger)
-        {
-            ExecuteEvents.Execute(item, new PointerEventData(EventSystem.current), action);
-        }
+        instance = this;
     }
 
-    private void TriggerExitAction(GameObject[] objectsToTrigger, ExecuteEvents.EventFunction<IPointerExitHandler> action)
+    private void Start()
     {
-        foreach (var item in objectsToTrigger)
-        {
-            ExecuteEvents.Execute(item, new PointerEventData(EventSystem.current), action);
-        }
+        IncreaseBetValue();
+        UpdateDemText();
     }
 
-    private void TriggerBetAction(GameObject[] objectsToTrigger, string type)
+    public float GetCurrentDemValue()
     {
-        foreach (var item in objectsToTrigger)
+        return dem;
+    }
+
+    public void IncreaseBetValue()
+    {
+        float[] increments = { 1, 2, 3, 5, 10, 20, 30, 50, 75, 100, 200, 300, 400, 500, 1000, 3000, 5000, 10000, 20000, 30000 };
+
+        for (int i = 0; i < increments.Length; i++)
         {
-            var goalButton = item.GetComponent<GoalButton>();
-            if (goalButton != null)
+            if (dem < increments[i])
             {
-                switch (type)
-                {
-                    case FirstEightString: goalButton.SelectBetFirstEight(); break;
-                    case SecondEightString: goalButton.SelectBetSecondEight(); break;
-                    case ThirthEightString: goalButton.SelectBetThirdEight(); break;
-                    case OneToTwelveString: goalButton.SelectBetOneToTwelve(); break;
-                    case TwelveToTwentyFourString: goalButton.SelectBetTwelveToTwentyFour(); break;
-                    case BlueString: goalButton.SelectBetBlue(); break;
-                    case YellowString: goalButton.SelectBetYellow(); break;
-                    case EvenString: goalButton.SelectBetEven(); break;
-                    case OddString: goalButton.SelectBetOdd(); break;
-                    default: Debug.LogWarning("Unhandled type: " + type); break;
-                }
+                dem = increments[i];
+                break;
             }
         }
+
+        UpdateDemText();
     }
 
-    private void TriggerPointerEnter(GameObject[] objectsToTrigger) => TriggerEnterAction(objectsToTrigger, ExecuteEvents.pointerEnterHandler);
-    private void TriggerPointerClick(GameObject[] objectsToTrigger, string type) => TriggerBetAction(objectsToTrigger, type);
-    private void TriggerPointerExit(GameObject[] objectsToTrigger) => TriggerExitAction(objectsToTrigger, ExecuteEvents.pointerExitHandler);
+    public void DecreaseBetValue()
+    {
+        float[] decrements = { 30000, 20000, 10000, 5000, 3000, 1000, 500, 400, 300, 200, 100, 75, 50, 30, 20, 10, 5, 3, 2, 1 };
 
-    #region EventMethods
+        for (int i = 0; i < decrements.Length; i++)
+        {
+            if (dem > decrements[i])
+            {
+                dem = decrements[i];
+                break;
+            }
+        }
 
-    public void FirstEightEnter() => TriggerPointerEnter(FirstEight);
-    public void FirstEightClick() => TriggerPointerClick(FirstEight, FirstEightString);
-    public void FirstEightExit() => TriggerPointerExit(FirstEight);
+        UpdateDemText();
+    }
 
-    public void SecondEightEnter() => TriggerPointerEnter(SecondEight);
-    public void SecondEightClick() => TriggerPointerClick(SecondEight, SecondEightString);
-    public void SecondEightExit() => TriggerPointerExit(SecondEight);
+    private void UpdateDemText()
+    {
+        demText.text = "DEM " + GetCurrentDemValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+    }
 
-    public void ThirthEightEnter() => TriggerPointerEnter(ThirthEight);
-    public void ThirthEightClick() => TriggerPointerClick(ThirthEight, ThirthEightString);
-    public void ThirthEightExit() => TriggerPointerExit(ThirthEight);
-
-    public void OneToTwelveEnter() => TriggerPointerEnter(oneToTwelve);
-    public void OneToTwelveClick() => TriggerPointerClick(oneToTwelve, OneToTwelveString);
-    public void OneToTwelveExit() => TriggerPointerExit(oneToTwelve);
-
-    public void TwelveToTwentyFourEnter() => TriggerPointerEnter(TwelveToTwentyFour);
-    public void TwelveToTwentyFourClick() => TriggerPointerClick(TwelveToTwentyFour, TwelveToTwentyFourString);
-    public void TwelveToTwentyFourExit() => TriggerPointerExit(TwelveToTwentyFour);
-
-    public void BlueEnter() => TriggerPointerEnter(Blue);
-    public void BlueClick() => TriggerPointerClick(Blue, BlueString);
-    public void BlueExit() => TriggerPointerExit(Blue);
-
-    public void YellowEnter() => TriggerPointerEnter(Yellow);
-    public void YellowClick() => TriggerPointerClick(Yellow, YellowString);
-    public void YellowExit() => TriggerPointerExit(Yellow);
-
-    public void EvenEnter() => TriggerPointerEnter(Even);
-    public void EvenClick() => TriggerPointerClick(Even, EvenString);
-    public void EvenExit() => TriggerPointerExit(Even);
-
-    public void OddEnter() => TriggerPointerEnter(Odd);
-    public void OddClick() => TriggerPointerClick(Odd, OddString);
-    public void OddExit() => TriggerPointerExit(Odd);
-
-    #endregion
 }

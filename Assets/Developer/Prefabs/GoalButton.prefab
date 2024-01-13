@@ -336,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DemAnimator: {fileID: 6235515973942174405}
   Betanimator: {fileID: 7362860583222128081}
+  DemText: {fileID: 3576455173934406949}
 --- !u!1 &5166817925110800297
 GameObject:
   m_ObjectHideFlags: 0

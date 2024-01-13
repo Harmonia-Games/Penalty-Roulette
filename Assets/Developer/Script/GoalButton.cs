@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GoalButton : MonoBehaviour
 {
     [SerializeField] Animator DemAnimator;
     [SerializeField] Animator Betanimator;
+    [SerializeField] TMP_Text DemText;
+
+    public float multiply;
+    float currentBet;
 
     private bool selectClassic, selectFirstEight, selectSecondEight, selectThirdEight,
                  selectOneToTwelve, selectTwelveToTwentyFour, selectBlue, selectYellow, selectEven, selectOdd;
+
+    private void UpdateDemText()
+    {
+        DemText.text = "DEM " +BetManager.instance.GetCurrentDemValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+    }
 
     private void ToggleSelection(ref bool selection, Animator animator)
     {
@@ -33,6 +43,8 @@ public class GoalButton : MonoBehaviour
         if (!selectClassic)
         {
             DemAnimator.SetTrigger("Select");
+            currentBet = BetManager.instance.GetCurrentDemValue();
+            UpdateDemText();
         }
         else
         {
