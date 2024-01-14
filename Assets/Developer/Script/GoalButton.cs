@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -12,6 +13,9 @@ public class GoalButton : MonoBehaviour
     [SerializeField] GameObject failAnimator;
     [SerializeField] TMP_Text MoneyText;
     [SerializeField] CanvasGroup fadeCanvas;
+    [SerializeField] Color defaultColor;
+    [SerializeField] Color mouseEnterColor;
+    [SerializeField] Image SelectableSprite;
 
     public float multiply;
     private float currentBet;
@@ -26,7 +30,14 @@ public class GoalButton : MonoBehaviour
     {
         eventTrigger = GetComponent<EventTrigger>();
     }
-
+    public void ColorChangeEnterMouse()
+    {
+        SelectableSprite.color = mouseEnterColor;
+    }
+    public void ColorChangeExitMouse()
+    {
+        SelectableSprite.color = defaultColor;
+    }
     public void DisableEventTrigger()
     {
         eventTrigger.enabled = false;

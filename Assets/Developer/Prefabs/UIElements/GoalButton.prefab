@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37254903, g: 0.8980392, b: 1, a: 0.7921569}
+  m_Color: {r: 0.12156863, g: 0.63529414, b: 0.7372549, a: 0.7921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -447,13 +447,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7084437534157384643}
-          m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-          m_MethodName: set_sprite
-          m_Mode: 2
+        - m_Target: {fileID: 1784671976917408956}
+          m_TargetAssemblyTypeName: GoalButton, Assembly-CSharp
+          m_MethodName: ColorChangeEnterMouse
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 285164880, guid: 3768bfe67e10a403995e7da0e960a021, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -463,13 +463,13 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7084437534157384643}
-          m_TargetAssemblyTypeName: UnityEngine.UI.Image, UnityEngine.UI
-          m_MethodName: set_sprite
-          m_Mode: 2
+        - m_Target: {fileID: 1784671976917408956}
+          m_TargetAssemblyTypeName: GoalButton, Assembly-CSharp
+          m_MethodName: ColorChangeExitMouse
+          m_Mode: 1
           m_Arguments:
-            m_ObjectArgument: {fileID: 704181964, guid: 3768bfe67e10a403995e7da0e960a021, type: 3}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -493,6 +493,9 @@ MonoBehaviour:
   failAnimator: {fileID: 1561517922476683103}
   MoneyText: {fileID: 3576455173934406949}
   fadeCanvas: {fileID: 4103157377819365485}
+  defaultColor: {r: 0.12148449, g: 0.6366347, b: 0.735849, a: 0.7921569}
+  mouseEnterColor: {r: 0.37254903, g: 0.8980392, b: 1, a: 0.7921569}
+  SelectableSprite: {fileID: 7084437534157384643}
   multiply: 48
   selectClassic: 0
   selectFirstEight: 0
@@ -709,7 +712,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278201863
-  m_fontColor: {r: 0.027687758, g: 0.1792453, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -732,7 +735,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
   m_fontSizeMax: 24
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -822,20 +825,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8298804148600925147}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.8375001, b: 1, a: 0.7921569}
+  m_Color: {r: 0.14197737, g: 1, b: 0.033018887, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4848f0e29905eaa4c9b8ca6ead0145e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 522e23ecbb670447aac577df27cee030, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -925,14 +928,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8292062, b: 0, a: 1}
+  m_Color: {r: 0.38956857, g: 1, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4848f0e29905eaa4c9b8ca6ead0145e6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 522e23ecbb670447aac577df27cee030, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
