@@ -2,6 +2,8 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
+
 public class Ball : MonoBehaviour
 {
     public Transform startPos;
@@ -9,7 +11,9 @@ public class Ball : MonoBehaviour
     public Transform targetPosition;
     public Animator fileAnim;
 
-  
+    private void Start()
+    {
+    }
     public void MoveWithCurve()
     {
         // Eğri için kontrol noktalarını belirleyin
@@ -27,6 +31,7 @@ public class Ball : MonoBehaviour
     {
         yield return new WaitForSeconds(0.45f);
         fileAnim.SetTrigger("Goal");
+        fileAnim.gameObject.GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
         transform.position = startPos.position;

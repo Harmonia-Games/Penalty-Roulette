@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -283,4 +282,6 @@ public class GameManager : MonoBehaviour
             goalButtons[shootNumber - 1].WinAnim();
         }
     }
+
+   
 }

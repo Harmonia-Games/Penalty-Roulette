@@ -106,7 +106,7 @@ public class BetManager : MonoBehaviour
     {
         if (calculateWinPayment > 0)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             caseMoneyValue += calculateWinPayment;
             UpdateMoneyTexts();
             winPopUp.SetActive(true);
@@ -121,7 +121,7 @@ public class BetManager : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             calculateWinPayment = 0;
             GameManager.instance.RestartAction();
             currentBet = 0;
