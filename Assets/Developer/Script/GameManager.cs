@@ -41,6 +41,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] BetButton odd;
     [SerializeField] BetButton save;
 
+    [Header("GoalKeeper")]
+    [SerializeField] GameObject GK;
+    [SerializeField] CharacterAnimationController GkAnimator;
+
     private void Awake()
     {
         instance = this;
@@ -108,8 +112,8 @@ public class GameManager : MonoBehaviour
     {
         float randomValue = Random.value;
 
-        if (randomValue <= 0.5f) Goal();
-        else if (randomValue <= 0.7f) Miss();
+        if (randomValue <= 0.6f) Goal();
+        else if (randomValue <= 0.8f) Miss();
         else Save();
     }
 
@@ -171,8 +175,14 @@ public class GameManager : MonoBehaviour
         SelectTwelvesControl();
         SelectOddEvenControl();
         SelectColorControl();
+        StartCoroutine(GoalKeeperAction());
     }
-
+    IEnumerator GoalKeeperAction()
+    {
+        GK.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        GK.SetActive(false);
+    }
     private void SelectTwelvesControl()
     {
         if (shootNumber <= 12 && firstTwelve.select)
@@ -229,6 +239,15 @@ public class GameManager : MonoBehaviour
         if (goalButtons[shootNumber-1].selectClassic)
         {
             BetManager.instance.calculateWinPayment += goalButtons[shootNumber].GetWinBetValue();
+            goalButtons[shootNumber-1].WinAnim();
+        }
+        else if (!goalButtons[shootNumber - 1].AnySelectionTrue())
+        {
+            goalButtons[shootNumber-1].FailAnim();
+        }
+        else if(goalButtons[shootNumber - 1].AnySelectionTrue())
+        {
+            goalButtons[shootNumber - 1].WinAnim();
         }
     }
 }

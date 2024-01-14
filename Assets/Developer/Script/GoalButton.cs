@@ -7,6 +7,8 @@ public class GoalButton : MonoBehaviour
 {
     [SerializeField] Animator classicButtonAnimator;
     [SerializeField] Animator betButtonAnimator;
+    [SerializeField] GameObject winAnimator;
+    [SerializeField] GameObject failAnimator;
     [SerializeField] TMP_Text MoneyText;
 
     public float multiply;
@@ -18,6 +20,9 @@ public class GoalButton : MonoBehaviour
 
     public void ResetButton()
     {
+        winAnimator.SetActive(false);
+        failAnimator.SetActive(false);
+
         if (selectClassic)
         {
             classicButtonAnimator.SetTrigger("Deselect");
@@ -60,7 +65,7 @@ public class GoalButton : MonoBehaviour
         }
     }
     
-    private bool AnySelectionTrue() =>
+    public bool AnySelectionTrue() =>
          selectFirstEight || selectSecondEight || selectThirdEight ||
         selectOneToTwelve || selectTwelveToTwentyFour || selectBlue || selectYellow || selectEven || selectOdd;
 
@@ -82,6 +87,14 @@ public class GoalButton : MonoBehaviour
         selectClassic = !selectClassic;
     }
 
+    public void WinAnim()
+    {
+        winAnimator.SetActive(true);
+    }
+    public void FailAnim()
+    {
+        failAnimator.SetActive(true);
+    }
     public float GetWinBetValue()
     {
         return currentBet * multiply;
