@@ -3912,10 +3912,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4227933893101580193, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 326
+      objectReference: {fileID: 0}
     - target: {fileID: 6514180603071030188, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1736436974}
+    - target: {fileID: 6587025820826727765, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -368
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587025820829026640, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 349.588
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587025820829026640, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 635
+      objectReference: {fileID: 0}
     - target: {fileID: 6587025821405153461, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
       propertyPath: m_Name
       value: GameCanvas/UI
