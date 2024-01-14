@@ -3549,6 +3549,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goal/Timelines/System/UI
       objectReference: {fileID: 0}
+    - target: {fileID: 1389115160556563031, guid: 6cb6ea47ae1cd419fbb73720223c046e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5130787080922854835, guid: 6cb6ea47ae1cd419fbb73720223c046e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7211138824214389499, guid: 6cb6ea47ae1cd419fbb73720223c046e, type: 3}
       propertyPath: m_SizeDelta.x
       value: 100
@@ -3935,6 +3943,10 @@ PrefabInstance:
     - target: {fileID: 6587025821405153461, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
       propertyPath: m_Name
       value: GameCanvas/UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587025821405153461, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6587025821405153465, guid: f16b4cf257e49437db1f0c7aba06fa88, type: 3}
       propertyPath: m_Pivot.x
