@@ -15,6 +15,29 @@ public class GoalButton : MonoBehaviour
     public bool selectClassic, selectFirstEight, selectSecondEight, selectThirdEight,
                  selectOneToTwelve, selectTwelveToTwentyFour, selectBlue, selectYellow, selectEven, selectOdd;
 
+
+    public void ResetButton()
+    {
+        if (selectClassic)
+        {
+            classicButtonAnimator.SetTrigger("Deselect");
+            BetManager.instance.UpdateCurrentBet(-currentBet);
+            selectClassic = false;
+        }
+
+        if (AnySelectionTrue())
+        {
+            if (selectFirstEight) SelectBetFirstEight();
+            if (selectSecondEight) SelectBetSecondEight();
+            if (selectThirdEight) SelectBetThirdEight();
+            if (selectOneToTwelve) SelectBetOneToTwelve();
+            if (selectTwelveToTwentyFour) SelectBetTwelveToTwentyFour();
+            if (selectBlue) SelectBetBlue();
+            if (selectYellow) SelectBetYellow();
+            if (selectEven) SelectBetEven();
+            if (selectOdd) SelectBetOdd();
+        }
+    }
     private void UpdateMoneyText()
     {
         MoneyText.text = "USD " +BetManager.instance.GetBetMoneyValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
@@ -36,7 +59,7 @@ public class GoalButton : MonoBehaviour
             BetManager.instance.UpdateCurrentBet(currentBet);
         }
     }
-
+    
     private bool AnySelectionTrue() =>
          selectFirstEight || selectSecondEight || selectThirdEight ||
         selectOneToTwelve || selectTwelveToTwentyFour || selectBlue || selectYellow || selectEven || selectOdd;
@@ -57,6 +80,11 @@ public class GoalButton : MonoBehaviour
         }
 
         selectClassic = !selectClassic;
+    }
+
+    public float GetWinBetValue()
+    {
+        return currentBet * multiply;
     }
     public void SelectBetFirstEight() { ToggleSelection(ref selectFirstEight, betButtonAnimator);  } 
     public void SelectBetSecondEight() => ToggleSelection(ref selectSecondEight, betButtonAnimator);

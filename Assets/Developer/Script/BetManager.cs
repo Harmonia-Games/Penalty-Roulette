@@ -17,6 +17,11 @@ public class BetManager : MonoBehaviour
     [SerializeField] float caseMoneyValue;
     [SerializeField] TMP_Text caseMoneyValueText;
 
+    [Header("Win UI")]
+    [SerializeField] TMP_Text winText;
+    [SerializeField] TMP_Text winPopUpText;
+    [SerializeField] GameObject winPopUp;
+    public float calculateWinPayment;
 
 
     private void Awake()
@@ -41,6 +46,10 @@ public class BetManager : MonoBehaviour
     public float GetBetMoneyValue()
     {
         return betMoneyValue;
+    }
+    public float SetCaseMoneyValue(float value)
+    {
+        return caseMoneyValue += value;
     }
 
     public float GetCurrentCaseValue()
@@ -80,10 +89,41 @@ public class BetManager : MonoBehaviour
         UpdateMoneyTexts();
     }
 
-    private void UpdateMoneyTexts()
+    public void UpdateMoneyTexts()
     {
         betMoneyValueText.text = "USD " + GetBetMoneyValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
         caseMoneyValueText.text = "USD " + GetCurrentCaseValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+        winText.text = "USD " + calculateWinPayment.ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+        winPopUpText.text = "USD " + calculateWinPayment.ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+    }
+
+    public void WinLose()
+    {
+        StartCoroutine(WinLoseProcess());
+    }
+    IEnumerator WinLoseProcess()
+    {
+        if (calculateWinPayment > 0)
+        {
+            yield return new WaitForSeconds(0.5f);
+            caseMoneyValue += calculateWinPayment;
+            UpdateMoneyTexts();
+            winPopUp.SetActive(true);
+
+            yield return new WaitForSeconds(2);
+
+            winPopUp.SetActive(false);
+            calculateWinPayment = 0;
+            GameManager.instance.RestartAction();
+
+        }
+        else
+        {
+            yield return new WaitForSeconds(1f);
+            calculateWinPayment = 0;
+            GameManager.instance.RestartAction();
+
+        }
     }
 
 }

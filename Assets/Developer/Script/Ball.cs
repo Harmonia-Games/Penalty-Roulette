@@ -17,16 +17,16 @@ public class Ball : MonoBehaviour
         Vector3 endPoint = targetPosition.position;
 
         // Eğrisel hareketi başlatın
-        transform.DOPath(new Vector3[] { startPoint, controlPoint, endPoint }, 0.5f, PathType.CatmullRom, PathMode.TopDown2D)
+        transform.DOPath(new Vector3[] { startPoint, controlPoint, endPoint }, 0.6f, PathType.CatmullRom, PathMode.TopDown2D)
             .SetEase(Ease.OutQuad);
 
         StartCoroutine(Goal());
     }
     IEnumerator Goal()
     {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.45f);
         fileAnim.SetTrigger("Goal");
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
     }
 }

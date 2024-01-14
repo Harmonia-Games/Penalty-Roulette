@@ -9,7 +9,7 @@ public class BetButton : MonoBehaviour
     [SerializeField] TMP_Text moneyText;
     public float multiply;
     float currentBet;
-    bool select;
+    public bool select;
 
     public void Select()
     {
@@ -31,5 +31,9 @@ public class BetButton : MonoBehaviour
     private void UpdateMoneyText()
     {
         moneyText.text = "USD " + BetManager.instance.GetBetMoneyValue().ToString("#,##0.00", System.Globalization.CultureInfo.InvariantCulture);
+    }
+    public float GetWinBetValue()
+    {
+        return currentBet * multiply;
     }
 }
