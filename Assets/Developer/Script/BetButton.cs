@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -7,9 +8,31 @@ public class BetButton : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] TMP_Text moneyText;
+    [SerializeField] CanvasGroup fadeCanvas;
     public float multiply;
-    float currentBet;
     public bool select;
+    private EventTrigger eventTrigger;
+    private float currentBet;
+
+    private void Start()
+    {
+        eventTrigger = GetComponent<EventTrigger>();
+    }
+    private void Update()
+    {
+        print(eventTrigger.enabled);
+    }
+    public void DisableEventTrigger()
+    {
+        eventTrigger.enabled = false;
+        FadeInCanvas();
+    }
+
+    public void EnableEventTrigger()
+    {
+        eventTrigger.enabled = true;
+        FadeOutCanvas();
+    }
 
     public void Select()
     {
@@ -35,5 +58,13 @@ public class BetButton : MonoBehaviour
     public float GetWinBetValue()
     {
         return currentBet * multiply;
+    }
+    public void FadeInCanvas()
+    {
+        fadeCanvas.alpha = 0.5f;
+    }
+    public void FadeOutCanvas()
+    {
+        fadeCanvas.alpha = 1f;
     }
 }

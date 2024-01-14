@@ -42,8 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] BetButton save;
 
     [Header("GoalKeeper")]
-    [SerializeField] GameObject GK;
-    [SerializeField] CharacterAnimationController GkAnimator;
+    [SerializeField] GameObject[] GoalKeepers;
 
     private void Awake()
     {
@@ -74,8 +73,8 @@ public class GameManager : MonoBehaviour
     public void RestartAction()
     {
         isGameStart = false;
-        ResetAllButtons();
         InteractableGameButtons();
+        ResetAllButtons();
     }
     public void ResetAllButtons()
     {
@@ -85,6 +84,8 @@ public class GameManager : MonoBehaviour
         }
         foreach (var item in betButtons)
         {
+            item.EnableEventTrigger();
+
             if (item.select)
             {
                 item.Select();
@@ -105,6 +106,14 @@ public class GameManager : MonoBehaviour
         foreach (var item in gameButtons)
         {
             item.interactable = !isGameStart;
+        }
+        foreach (var item in goalButtons)
+        {
+            item.DisableEventTrigger();
+        }
+        foreach (var item in betButtons)
+        {
+            item.DisableEventTrigger();
         }
     }
    
@@ -155,6 +164,7 @@ public class GameManager : MonoBehaviour
         int randomMissIndex = Random.Range(0, saveScenerios.Length);
         saveScenerios[randomMissIndex].SetActive(true);
     }
+
     private void Goal()
     {
         RandomizeShoot();
@@ -175,13 +185,36 @@ public class GameManager : MonoBehaviour
         SelectTwelvesControl();
         SelectOddEvenControl();
         SelectColorControl();
-        StartCoroutine(GoalKeeperAction());
+        GoalKeeperAction();
     }
-    IEnumerator GoalKeeperAction()
+    private void GoalKeeperAction()
     {
-        GK.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        GK.SetActive(false);
+        StartCoroutine(RandomGoalKeeper());
+    }
+
+    IEnumerator RandomGoalKeeper()
+    {
+
+        // Deactivate all GoalKeepers
+        DeactivateAllGoalKeepers();
+
+        // Randomly select a GoalKeeper
+        int randomGoalKeeperIndex = Random.Range(0, GoalKeepers.Length);
+        GameObject selectedGoalKeeper = GoalKeepers[randomGoalKeeperIndex];
+
+        // Activate the selected GoalKeeper
+        selectedGoalKeeper.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        DeactivateAllGoalKeepers();
+
+    }
+
+    private void DeactivateAllGoalKeepers()
+    {
+        foreach (var keeper in GoalKeepers)
+        {
+            keeper.SetActive(false);
+        }
     }
     private void SelectTwelvesControl()
     {
@@ -197,11 +230,11 @@ public class GameManager : MonoBehaviour
         {
             BetManager.instance.calculateWinPayment += firstEight.GetWinBetValue();
         }
-        else if (shootNumber <= 16 && secondEight.select)
+        else if (shootNumber >8 && shootNumber <= 16 && secondEight.select)
         {
             BetManager.instance.calculateWinPayment += secondEight.GetWinBetValue();
         }
-        else if (thirdEight.select)
+        else if (shootNumber > 8 && shootNumber > 16 && thirdEight.select)
         {
             BetManager.instance.calculateWinPayment += thirdEight.GetWinBetValue();
         }

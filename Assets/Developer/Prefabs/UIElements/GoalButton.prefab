@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 7084437534157384643}
   - component: {fileID: 7621349772463364042}
   - component: {fileID: 1784671976917408956}
+  - component: {fileID: 4103157377819365485}
   m_Layer: 0
   m_Name: GoalButton
   m_TagString: Untagged
@@ -490,6 +491,7 @@ MonoBehaviour:
   winAnimator: {fileID: 613319635215408833}
   failAnimator: {fileID: 1561517922476683103}
   MoneyText: {fileID: 3576455173934406949}
+  fadeCanvas: {fileID: 4103157377819365485}
   multiply: 48
   selectClassic: 0
   selectFirstEight: 0
@@ -501,6 +503,18 @@ MonoBehaviour:
   selectYellow: 0
   selectEven: 0
   selectOdd: 0
+--- !u!225 &4103157377819365485
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3711859789886815660}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5166817925110800297
 GameObject:
   m_ObjectHideFlags: 0

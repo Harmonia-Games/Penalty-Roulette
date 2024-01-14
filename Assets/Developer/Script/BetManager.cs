@@ -21,6 +21,7 @@ public class BetManager : MonoBehaviour
     [SerializeField] TMP_Text winText;
     [SerializeField] TMP_Text winPopUpText;
     [SerializeField] GameObject winPopUp;
+
     public float calculateWinPayment;
 
 
@@ -115,6 +116,7 @@ public class BetManager : MonoBehaviour
             winPopUp.SetActive(false);
             calculateWinPayment = 0;
             GameManager.instance.RestartAction();
+            currentBet = 0;
 
         }
         else
@@ -122,8 +124,10 @@ public class BetManager : MonoBehaviour
             yield return new WaitForSeconds(1f);
             calculateWinPayment = 0;
             GameManager.instance.RestartAction();
-
+            currentBet = 0;
         }
     }
+
+   
 
 }

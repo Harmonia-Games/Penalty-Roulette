@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using UnityEngine;
 using TMPro;
 
@@ -10,18 +11,38 @@ public class GoalButton : MonoBehaviour
     [SerializeField] GameObject winAnimator;
     [SerializeField] GameObject failAnimator;
     [SerializeField] TMP_Text MoneyText;
+    [SerializeField] CanvasGroup fadeCanvas;
 
     public float multiply;
-    float currentBet;
+    private float currentBet;
+    private EventTrigger eventTrigger;
+
+
 
     public bool selectClassic, selectFirstEight, selectSecondEight, selectThirdEight,
                  selectOneToTwelve, selectTwelveToTwentyFour, selectBlue, selectYellow, selectEven, selectOdd;
 
+    private void Start()
+    {
+        eventTrigger = GetComponent<EventTrigger>();
+    }
 
+    public void DisableEventTrigger()
+    {
+        eventTrigger.enabled = false;
+        FadeInCanvas();
+    }
+
+    public void EnableEventTrigger()
+    {
+        eventTrigger.enabled = true;
+        FadeOutCanvas();
+    }
     public void ResetButton()
     {
         winAnimator.SetActive(false);
         failAnimator.SetActive(false);
+        EnableEventTrigger();
 
         if (selectClassic)
         {
@@ -90,14 +111,24 @@ public class GoalButton : MonoBehaviour
     public void WinAnim()
     {
         winAnimator.SetActive(true);
+        FadeOutCanvas();
     }
     public void FailAnim()
     {
         failAnimator.SetActive(true);
+        FadeOutCanvas();
     }
     public float GetWinBetValue()
     {
         return currentBet * multiply;
+    }
+    public void FadeInCanvas()
+    {
+        fadeCanvas.alpha = 0.5f;
+    }
+    public void FadeOutCanvas()
+    {
+        fadeCanvas.alpha = 1f;
     }
     public void SelectBetFirstEight() { ToggleSelection(ref selectFirstEight, betButtonAnimator);  } 
     public void SelectBetSecondEight() => ToggleSelection(ref selectSecondEight, betButtonAnimator);

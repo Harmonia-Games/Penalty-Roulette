@@ -485,6 +485,7 @@ GameObject:
   - component: {fileID: 6036359755728509426}
   - component: {fileID: 1490920531742617938}
   - component: {fileID: 7503596105505541019}
+  - component: {fileID: 8990141252868642445}
   m_Layer: 0
   m_Name: BetButton
   m_TagString: Untagged
@@ -684,7 +685,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7503596105505541019}
   moneyText: {fileID: 8568075203319808682}
+  fadeCanvas: {fileID: 8990141252868642445}
   multiply: 0
+  select: 0
 --- !u!114 &1490920531742617938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -719,6 +722,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!225 &8990141252868642445
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8414651377548026403}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8486752695770335027
 GameObject:
   m_ObjectHideFlags: 0
