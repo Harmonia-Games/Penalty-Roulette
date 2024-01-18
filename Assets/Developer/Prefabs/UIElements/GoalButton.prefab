@@ -399,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12156863, g: 0.63529414, b: 0.7372549, a: 0.7921569}
+  m_Color: {r: 0.19215687, g: 0.44705883, b: 0.5019608, a: 0.7921569}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -519,7 +519,7 @@ MonoBehaviour:
   failAnimator: {fileID: 1561517922476683103}
   MoneyText: {fileID: 3576455173934406949}
   fadeCanvas: {fileID: 4103157377819365485}
-  defaultColor: {r: 0.12148449, g: 0.6366347, b: 0.735849, a: 0.7921569}
+  defaultColor: {r: 0.19215687, g: 0.44705883, b: 0.5019608, a: 0.7921569}
   mouseEnterColor: {r: 0.37254903, g: 0.8980392, b: 1, a: 0.7921569}
   SelectableSprite: {fileID: 7084437534157384643}
   multiply: 48
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.14197737, g: 1, b: 0.033018887, a: 0}
+  m_Color: {r: 0, g: 1, b: 0.74509805, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
