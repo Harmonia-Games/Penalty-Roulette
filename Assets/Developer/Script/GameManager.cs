@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform[] ballCurve;
     [SerializeField] GameObject[] missScenarios;
     [SerializeField] GameObject[] saveScenerios;
+    [SerializeField] GameObject[] goalScenerios;
     [SerializeField] int shootNumber;
     [SerializeField] Ball ball;
 
@@ -98,6 +99,14 @@ public class GameManager : MonoBehaviour
         {
             item.SetActive(false);
         }
+        foreach (var item in goalScenerios)
+        {
+            item.SetActive(false);
+        }
+        foreach (var item in GoalKeepers)
+        {
+            item.SetActive(false);
+        }
     }
 
     private void InteractableGameButtons()
@@ -120,8 +129,8 @@ public class GameManager : MonoBehaviour
     {
         float randomValue = Random.value;
 
-        if (randomValue <= 0.6f) Goal();
-        else if (randomValue <= 0.8f) Miss();
+        if (randomValue <= 0.5f) Goal();
+        else if (randomValue <= 0.7f) Miss();
         else Save();
     }
 
@@ -167,10 +176,12 @@ public class GameManager : MonoBehaviour
     private void Goal()
     {
         RandomizeShoot();
-        ball.gameObject.SetActive(true);
+        goalScenerios[shootNumber - 1].SetActive(true);
+
+        /*ball.gameObject.SetActive(true);
         ball.curvePosition = ballCurve[shootNumber-1];
         ball.targetPosition = ballTarget[shootNumber-1];
-        ball.MoveWithCurve();
+        ball.MoveWithCurve();*/
 
 
         GoalBetControl();
@@ -184,7 +195,6 @@ public class GameManager : MonoBehaviour
         SelectTwelvesControl();
         SelectOddEvenControl();
         SelectColorControl();
-        GoalKeeperAction();
     }
     private void GoalKeeperAction()
     {

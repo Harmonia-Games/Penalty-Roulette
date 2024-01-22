@@ -111,7 +111,7 @@ public class BetManager : MonoBehaviour
             UpdateMoneyTexts();
             winPopUp.SetActive(true);
 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1.5f);
 
             winPopUp.SetActive(false);
             calculateWinPayment = 0;
@@ -121,7 +121,7 @@ public class BetManager : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
             calculateWinPayment = 0;
             GameManager.instance.RestartAction();
             currentBet = 0;
