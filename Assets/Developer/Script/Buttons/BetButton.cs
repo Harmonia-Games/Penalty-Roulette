@@ -41,12 +41,12 @@ public class BetButton : MonoBehaviour
             animator.SetTrigger("Select");
             currentBet = BetManager.instance.GetBetMoneyValue();
             UpdateMoneyText();
-            BetManager.instance.UpdateCurrentBet(currentBet);
+            BetManager.instance.UpdateCurrentPot(currentBet);
         }
         else
         {
             animator.SetTrigger("Deselect");
-            BetManager.instance.UpdateCurrentBet(-currentBet);
+            BetManager.instance.UpdateCurrentPot(-currentBet);
         }
 
         select = !select;

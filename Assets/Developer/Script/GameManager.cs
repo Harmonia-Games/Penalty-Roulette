@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public float chanceForMiss;
     public float chanceForGoal;
 
-    bool isGameStart;
+    public float gameCoolDown;
+
+    private bool isGameStart;
 
     private void Awake()
     {
@@ -20,12 +22,14 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        GetComponent<GameScnerios>().Play();
+        GetComponent<GameScenarios>().Play();
         isGameStart = true;
     }
     public void RestartGame()
     {
         isGameStart = false;
+        GetComponent<GameScenarios>().ResetScenerios();
         UIManager.instance.EnableInteractBetButtons();
+        UIManager.instance.ResetButtons();
     }
 }

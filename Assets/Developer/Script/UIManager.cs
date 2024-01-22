@@ -38,9 +38,6 @@ public class UIManager : MonoBehaviour
     public BetButton odd;
     public BetButton save;
 
-    
-
-
     private void Awake()
     {
         instance = this;
@@ -52,6 +49,10 @@ public class UIManager : MonoBehaviour
     }
     public void EnableInteractBetButtons()
     {
+        foreach (var item in gameButtons)
+        {
+            item.interactable = true;
+        }
         foreach (var item in goalBetButtons)
         {
             item.EnableEventTrigger();
@@ -63,6 +64,10 @@ public class UIManager : MonoBehaviour
     }
     public void DisableInteractBetButtons()
     {
+        foreach (var item in gameButtons)
+        {
+            item.interactable = false;
+        }
         foreach (var item in goalBetButtons)
         {
             item.DisableEventTrigger();
@@ -75,6 +80,22 @@ public class UIManager : MonoBehaviour
     public void OpenInsufficientBalance()
     {
         insufficientBalanceUI.SetActive(true);
+    }
+    public void ResetButtons()
+    {
+        foreach (var item in goalBetButtons)
+        {
+            item.ResetButton();
+        }
+        foreach (var item in betButtons)
+        {
+            item.EnableEventTrigger();
+
+            if (item.select)
+            {
+                item.Select();
+            }
+        }
     }
     public void UpdateMoneyTexts()
     {

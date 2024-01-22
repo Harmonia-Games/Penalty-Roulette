@@ -58,7 +58,7 @@ public class GoalButton : MonoBehaviour
         if (selectClassic)
         {
             classicButtonAnimator.SetTrigger("Deselect");
-            BetManager.instance.UpdateCurrentBet(-currentBet);
+            BetManager.instance.UpdateCurrentPot(-currentBet);
             selectClassic = false;
         }
 
@@ -93,7 +93,7 @@ public class GoalButton : MonoBehaviour
         {
             animator.SetBool("Deselect", false);
             animator.SetBool("Select", true);
-            BetManager.instance.UpdateCurrentBet(currentBet);
+            BetManager.instance.UpdateCurrentPot(currentBet);
         }
     }
     
@@ -107,13 +107,13 @@ public class GoalButton : MonoBehaviour
         {
             classicButtonAnimator.SetTrigger("Select");
             currentBet = BetManager.instance.GetBetMoneyValue();
-            BetManager.instance.UpdateCurrentBet(currentBet);
+            BetManager.instance.UpdateCurrentPot(currentBet);
             UpdateMoneyText();
         }
         else
         {
             classicButtonAnimator.SetTrigger("Deselect");
-            BetManager.instance.UpdateCurrentBet(-currentBet);
+            BetManager.instance.UpdateCurrentPot(-currentBet);
         }
 
         selectClassic = !selectClassic;

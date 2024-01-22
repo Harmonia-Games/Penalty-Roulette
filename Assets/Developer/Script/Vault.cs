@@ -6,10 +6,7 @@ using TMPro;
 public class Vault : MonoBehaviour
 {
     public static Vault instance;
-
-    [Header("Case")]
     [SerializeField] float caseMoneyValue;
-    [SerializeField] TMP_Text caseMoneyValueText;
 
 
     private void Awake()

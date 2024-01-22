@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class BetManager : MonoBehaviour
 {
-    public static BetManager Instance;
+    public static BetManager instance;
 
     [Header("Bet Money")]
-    [SerializeField] private float currentBet;
-    [SerializeField] private float betMoneyValue;
+    [SerializeField] float currentPot;
+    [SerializeField] float betMoneyValue;
 
     public float calculateWinPayment;
 
+
     private void Awake()
     {
-        Instance = this;
+        instance = this;
     }
 
     private void Start()
@@ -23,14 +25,14 @@ public class BetManager : MonoBehaviour
         IncreaseBetValue();
     }
 
-    public float UpdateCurrentBet(float bet)
+    public float UpdateCurrentPot(float bet)
     {
-        return currentBet += bet;
+        return currentPot+=bet;
     }
 
-    public float GetCurrentBet()
+    public float CurrentPot()
     {
-        return currentBet;
+        return currentPot;
     }
 
     public float GetBetMoneyValue()
@@ -50,6 +52,7 @@ public class BetManager : MonoBehaviour
                 break;
             }
         }
+        UIManager.instance.UpdateMoneyTexts();
     }
 
     public void DecreaseBetValue()
@@ -64,6 +67,7 @@ public class BetManager : MonoBehaviour
                 break;
             }
         }
+        UIManager.instance.UpdateMoneyTexts();
     }
 
     public void BetResult()
@@ -71,7 +75,7 @@ public class BetManager : MonoBehaviour
         StartCoroutine(BetResultProcess());
     }
 
-    private IEnumerator BetResultProcess()
+    IEnumerator BetResultProcess()
     {
         if (calculateWinPayment > 0)
         {
@@ -80,7 +84,7 @@ public class BetManager : MonoBehaviour
 
             UIManager.instance.winPopUp.SetActive(true);
 
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(GameManager.instance.gameCoolDown);
 
             UIManager.instance.winPopUp.SetActive(false);
 
@@ -88,14 +92,16 @@ public class BetManager : MonoBehaviour
 
             GameManager.instance.RestartGame();
 
-            currentBet = 0;
+            currentPot = 0;
+
         }
         else
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(GameManager.instance.gameCoolDown);
             calculateWinPayment = 0;
             GameManager.instance.RestartGame();
-            currentBet = 0;
+            currentPot = 0;
         }
     }
+
 }

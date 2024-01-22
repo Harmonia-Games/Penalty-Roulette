@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScnerios : MonoBehaviour
+public class GameScenarios : MonoBehaviour
 {
     [Header("Ball")]
     [SerializeField] GameObject[] missScenarios;
@@ -14,10 +14,10 @@ public class GameScnerios : MonoBehaviour
 
     public void Play()
     {
-        if (BetManager.instance.CurrentBet() <= Vault.instance.GetCurrentCaseValue())
+        if (BetManager.instance.CurrentPot() <= Vault.instance.GetCurrentCaseValue())
         {
             StartAction();
-            Vault.instance.SetCaseMoneyValue(-BetManager.instance.CurrentBet());
+            Vault.instance.SetCaseMoneyValue(-BetManager.instance.CurrentPot());
             UIManager.instance.UpdateMoneyTexts();
         }
         else
@@ -79,5 +79,23 @@ public class GameScnerios : MonoBehaviour
         BetCalculate.instance.GoalBetCalculate(shootNumber);
     }
 
-
+    public void ResetScenerios()
+    {
+        foreach (var item in missScenarios)
+        {
+            item.SetActive(false);
+        }
+        foreach (var item in saveScenerios)
+        {
+            item.SetActive(false);
+        }
+        foreach (var item in goalScenerios)
+        {
+            item.SetActive(false);
+        }
+        foreach (var item in GoalKeepers)
+        {
+            item.SetActive(false);
+        }
+    }
 }
