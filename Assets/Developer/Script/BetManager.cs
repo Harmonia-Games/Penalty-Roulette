@@ -80,9 +80,11 @@ public class BetManager : MonoBehaviour
         if (calculateWinPayment > 0)
         {
             yield return new WaitForSeconds(1f);
+
             Vault.instance.SetCaseMoneyValue(calculateWinPayment);
 
             UIManager.instance.winPopUp.SetActive(true);
+            UIManager.instance.UpdateMoneyTexts();
 
             yield return new WaitForSeconds(GameManager.instance.gameCoolDown);
 
